@@ -1,6 +1,7 @@
 import org.example.model.*;
 import org.example.model.enums.LampType;
 import org.example.model.enums.PaintColor;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class MainTest {
         lamp = new Lamp(LampType.NORMAL, true, 80);
         bed = new Bed("Çift Kişilik", 4, 1, 2, 2);
         wardrobe = new Wardrobe(2, 4, 40);
-        carpet = new Carpet(3,5, PaintColor.RED);
+        carpet = new Carpet(3, 5, PaintColor.RED);
         ceiling = new Ceiling(3, PaintColor.RED);
         wall = new Wall("NORTH");
     }
@@ -50,7 +51,7 @@ public class MainTest {
 
     @DisplayName("Lamp sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
-    public void testLampInstanceTypes() throws NoSuchFieldException {
+    public void testLampInstanceTypes() {
         assertThat(lamp.getStyle(), instanceOf(LampType.class));
         assertThat(lamp.isBattery(), instanceOf(Boolean.class));
         assertThat(lamp.getGlobRating(), instanceOf(Integer.class));
@@ -58,12 +59,12 @@ public class MainTest {
 
     @DisplayName("Lamp turnOn methodu doğru çalışıyor mu?")
     @Test
-    public void testLampTypes() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
+    public void testLampTypes() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         lamp.turnOn();
+
         assertThat(out.toString(), containsString("Lamp is being turned on"));
     }
 
@@ -85,7 +86,7 @@ public class MainTest {
 
     @DisplayName("Bed sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
-    public void testBedInstanceTypes() throws NoSuchFieldException {
+    public void testBedInstanceTypes() {
         assertThat(bed.getStyle(), instanceOf(String.class));
         assertThat(bed.getHeight(), instanceOf(Integer.class));
         assertThat(bed.getQuilts(), instanceOf(Integer.class));
@@ -95,12 +96,12 @@ public class MainTest {
 
     @DisplayName("Bed make methodu doğru çalışıyor mu?")
     @Test
-    public void testBedMakeMethod() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
+    public void testBedMakeMethod() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         bed.make();
+
         assertThat(out.toString(), containsString("The bed is being made."));
     }
 
@@ -118,7 +119,7 @@ public class MainTest {
 
     @DisplayName("Wardrobe sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
-    public void testWardrobeInstanceTypes() throws NoSuchFieldException {
+    public void testWardrobeInstanceTypes() {
         assertThat(wardrobe.getWidth(), instanceOf(Integer.class));
         assertThat(wardrobe.getHeight(), instanceOf(Integer.class));
         assertThat(wardrobe.getWeight(), instanceOf(Double.class));
@@ -126,12 +127,12 @@ public class MainTest {
 
     @DisplayName("Wardrobe add methodu doğru çalışıyor mu?")
     @Test
-    public void testWardrobeAddMethod() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
+    public void testWardrobeAddMethod() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         wardrobe.add();
+
         assertThat(out.toString(), containsString("Wardrobe added into Bedroom."));
     }
 
@@ -149,7 +150,7 @@ public class MainTest {
 
     @DisplayName("Carpet sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
-    public void testCarpetInstanceTypes() throws NoSuchFieldException {
+    public void testCarpetInstanceTypes() {
         assertThat(carpet.getColor(), instanceOf(PaintColor.class));
         assertThat(carpet.getWidth(), instanceOf(Integer.class));
         assertThat(carpet.getHeight(), instanceOf(Integer.class));
@@ -157,12 +158,12 @@ public class MainTest {
 
     @DisplayName("Carpet lying methodu doğru çalışıyor mu?")
     @Test
-    public void testCarpetLyingMethod() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
+    public void testCarpetLyingMethod() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         carpet.lying();
+
         assertThat(out.toString(), containsString("Carpet is lying on Bedroom floor."));
     }
 
@@ -178,44 +179,44 @@ public class MainTest {
 
     @DisplayName("Ceiling sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
-    public void testCeilingInstanceTypes() throws NoSuchFieldException {
+    public void testCeilingInstanceTypes() {
         assertThat(ceiling.getColor(), instanceOf(PaintColor.class));
         assertThat(ceiling.getHeight(), instanceOf(Integer.class));
     }
 
     @DisplayName("Ceiling create methodu doğru çalışıyor mu?")
     @Test
-    public void testCeilingCreateMethod() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
+    public void testCeilingCreateMethod() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         ceiling.create();
+
         assertThat(out.toString(), containsString("Ceiling has been built."));
     }
 
     @DisplayName("Wall sınıf değişkenleri doğru access modifier değerlerine sahip mi ?")
     @Test
     public void testWallAccessModifiers() throws NoSuchFieldException {
-        Field colorField = wall.getClass().getDeclaredField("direction");
-        assertEquals(colorField.getModifiers(), 2);
+        Field directionField = wall.getClass().getDeclaredField("direction");
+
+        assertEquals(directionField.getModifiers(), 2);
     }
 
     @DisplayName("Wall sınıf değişkenleri doğru type değerlerine sahip mi ?")
     @Test
-    public void testWallInstanceTypes() throws NoSuchFieldException {
+    public void testWallInstanceTypes() {
         assertThat(wall.getDirection(), instanceOf(String.class));
     }
 
     @DisplayName("Wall create methodu doğru çalışıyor mu?")
     @Test
-    public void testWallCreateMethod() throws NoSuchFieldException {
-        PrintStream saveOut = System.out;
+    public void testWallCreateMethod() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         wall.create();
+
         assertThat(out.toString(), containsString("Wall has been built."));
     }
-
 }
